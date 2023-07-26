@@ -65,7 +65,7 @@ $("body").on('click', '#list_channel_reload_btn', function(e) {
 
 $("body").on('click', '#play_btn', function(e){
   e.preventDefault();
-  globalSendCommand('play_url', $(this).data('id'), $(this).data('name'), $(this).data('url'), function(ret){
+  globalSendCommand('play_url', $(this).data('id'), $(this).data('name'), $(this).data('type_name'), function(ret){
     if (ret.data == null) {
       notify('에러', 'danger');
       return;
@@ -87,7 +87,7 @@ $("body").on('click', '#play_btn', function(e){
 
 $("body").on('click', '#play_url_btn', function(e){
   e.preventDefault();
-  globalSendCommand('play_url', $(this).data('id'), $(this).data('name'), $(this).data('url'), function(ret){
+  globalSendCommand('play_url', $(this).data('id'), $(this).data('name'), $(this).data('type_name'), function(ret){
     if (ret.data == null) {
       notify('에러', 'danger');
       return;
@@ -117,9 +117,9 @@ function make_channel_list(data) {
 
     buttons = '';
     if (data[i].category == ["NEWS"] || data[i].category == ["SPORTS"]) {
-      buttons += j_button('play_btn', 'PLAY', {'id':data[i].id, 'name':data[i].channel, 'url':data[i].url}, 'success', false, true);
+      buttons += j_button('play_btn', 'PLAY', {'id':data[i].id, 'name':data[i].channel, 'type_name':data[i].type_name}, 'success', false, true);
     }
-    buttons += j_button('play_url_btn', 'URL', {'id':data[i].id, 'name':data[i].channel, 'url':data[i].url}, 'info', false, true);
+    buttons += j_button('play_url_btn', 'URL', {'id':data[i].id, 'name':data[i].channel, 'type_name':data[i].type_name}, 'info', false, true);
     buttons = j_button_group(buttons);
     channel_clone.querySelector('#channel-action').innerHTML = buttons;
 

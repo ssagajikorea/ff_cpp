@@ -53,7 +53,7 @@ class ModuleMain(PluginModuleBase):
         elif command == "schedule_list":
             return jsonify({"list": CPP_Handler.schedule_list(), "updated_at": updated_at})
         elif command == "play_url":
-            url = arg3 if arg3 else ToolUtil.make_apikey_url(f"/{P.package_name}/api/url.m3u8?ch_id={arg1}")
+            url = ToolUtil.make_apikey_url(f"/{P.package_name}/api/url.m3u8?ch_id={arg1}&type_name={arg3}")
             ret = {"ret": "success", "data": url, "title": arg2}
         return jsonify(ret)
 
