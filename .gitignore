@@ -208,10 +208,9 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos
 
-test.py
+test*.py
 *.bak
 .git
 
 souce_cpp_handler.py
 souce_cpp_service.py
-mod_main.py

@@ -16,7 +16,7 @@ setting = {
                 "name": "목록",
             },
             {
-                "uri": "main/cpl",
+                "uri": "main/schedule",
                 "name": "방송 예정 목록",
             },
             {
@@ -33,12 +33,7 @@ from plugin import *
 
 P = create_plugin_instance(setting)
 try:
-    if os.path.exists(os.path.join(os.path.dirname(__file__), "mod_main.py")):
-        from .mod_main import ModuleMain
-    else:
-        from support import SupportSC
-
-        ModuleMain = SupportSC.load_module_P(P, "mod_main").ModuleMain
+    from .mod_main import ModuleMain
 
     P.set_module_list([ModuleMain])
 except Exception as e:

@@ -13,18 +13,16 @@
     <table id="result_table" class="table table-sm table-striped table-hover">
         <thead class="thead-dark"><tr>
           <th style="width:5%; text-align:center;" class="text-truncate"></th>
-          <th style="width:15%; text-align:left;" class="text-truncate">TYPE</th>
           <th style="width:25%; text-align:left;" class="text-truncate">DATE</th>
-          <th style="width:35%; text-align:left;" class="text-truncate">TITLE</th>
-          <th style="width:20%; text-align:left;" class="text-truncate">DESCRIPTION</th>
+          <th style="width:40%; text-align:left;" class="text-truncate">TITLE</th>
+          <th style="width:30%; text-align:left;" class="text-truncate">DESCRIPTION</th>
         </tr></thead>
         <tbody id="channel-list">
         <template id="channel-template"><tr>
           <td scope="col" style="width:5%; text-align:center;" id="channel-idx" class="text-truncate"></td>
-          <td scope="col" style="width:15%; text-align:left;" id="channel-type" class="text-truncate"></td>
           <td scope="col" style="width:25%; text-align:left;" id="channel-date" class="text-truncate"></td>
-          <td scope="col" style="width:35%; text-align:left;" id="channel-title" class="text-truncate"></td>
-          <td scope="col" style="width:20%; text-align:left;" id="channel-description" class="text-truncate"></td>
+          <td scope="col" style="width:40%; text-align:left;" id="channel-title" class="text-truncate"></td>
+          <td scope="col" style="width:30%; text-align:left;" id="channel-description" class="text-truncate"></td>
           
         </tr></template>
       </tbody>
@@ -52,7 +50,7 @@ $(document).ready(function(){
 
 function load_channel_list() {
   reset_channel_list('로딩중...');
-  globalSendCommand('broad_list_cpl', null, null, null, function(ret){
+  globalSendCommand('schedule_list', null, null, null, function(ret){
     $('#list_info').html(`마지막 업데이트: ${ret.updated_at}`);
     make_channel_list(ret.list);
   });
@@ -111,7 +109,6 @@ function make_channel_list(data) {
   for (i in data) {
     let channel_clone = channelTemplate.content.cloneNode(true);
     channel_clone.querySelector('#channel-idx').innerHTML = parseInt(i)+1;
-    channel_clone.querySelector('#channel-type').innerHTML += data[i].type_name + " / " +data[i].category;
     channel_clone.querySelector('#channel-date').innerHTML += data[i].start_at;
     channel_clone.querySelector('#channel-title').innerHTML = data[i].title || "";
     channel_clone.querySelector('#channel-description').innerHTML = data[i].description || "";
