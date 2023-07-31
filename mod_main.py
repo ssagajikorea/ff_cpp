@@ -5,13 +5,13 @@ from flask import Response
 from .setup import *
 
 try:
-    if os.path.exists(os.path.join(os.path.dirname(__file__), "souce_cpp_handler.py")):
-        from .souce_cpp_handler import CPP_Handler
+    if os.path.exists(os.path.join(os.path.dirname(__file__), "source_cpp_handler.py")):
+        from .source_cpp_handler import CPP_Handler
 
     else:
         from support import SupportSC
 
-        CPP_Handler = SupportSC.load_module_f(__file__, "souce_cpp_handler").CPP_Handler
+        CPP_Handler = SupportSC.load_module_f(__file__, "source_cpp_handler").CPP_Handler
 except:
     pass
 
