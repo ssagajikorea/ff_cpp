@@ -45,6 +45,8 @@ var current_data = null;
 var channelTemplate = document.querySelector('#channel-template');
 var channelScroller = document.querySelector('#channel-list');
 
+var streaming_type = ""
+
 $(document).ready(function(){
   load_channel_list();
 });
@@ -52,6 +54,7 @@ $(document).ready(function(){
 function load_channel_list() {
   reset_channel_list('로딩중...');
   globalSendCommand('broad_list', null, null, null, function(ret){
+    streaming_type = ret.streaming_type
     $('#list_info').html(`마지막 업데이트: ${ret.updated_at}`);
     make_channel_list(ret.list);
   });
@@ -116,7 +119,7 @@ function make_channel_list(data) {
     channel_clone.querySelector('#channel-current').title = data[i].id;
 
     buttons = '';
-    if (data[i].category == ["NEWS"] || data[i].category == ["SPORTS"]) {
+    if (streaming_type != ["direct"]) {
       buttons += j_button('play_btn', 'PLAY', {'id':data[i].id, 'name':data[i].channel, 'type_name':data[i].type_name}, 'success', false, true);
     }
     buttons += j_button('play_url_btn', 'URL', {'id':data[i].id, 'name':data[i].channel, 'type_name':data[i].type_name}, 'info', false, true);

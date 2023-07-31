@@ -49,7 +49,9 @@ class ModuleMain(PluginModuleBase):
         updated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         if command == "broad_list":
-            return jsonify({"list": CPP_Handler.ch_list(), "updated_at": updated_at})
+            streaming_type = P.ModelSetting.get("streaming_type")
+
+            return jsonify({"list": CPP_Handler.ch_list(), "updated_at": updated_at, "streaming_type": streaming_type})
         elif command == "schedule_list":
             return jsonify({"list": CPP_Handler.schedule_list(), "updated_at": updated_at})
         elif command == "play_url":
