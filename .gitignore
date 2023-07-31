@@ -212,5 +212,4 @@ test*.py
 *.bak
 .git
 
-souce_cpp_handler.py
-souce_cpp_service.py
+source*.py
